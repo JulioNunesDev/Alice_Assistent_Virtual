@@ -2,14 +2,14 @@
 
 minha assistente virtual, passando ainda por algumas atualizações.
 alguns comandos:
->> escutar musica
->> pesquisar no wikipedia
->> falar horas
+>> escutar musica,
+>> pesquisar no wikipedia,
+>> falar horas,
 
 updates soon:
->> trabalhar em sua IA 
->> abrir aplicacoes do desktop
->> banco de dados
+>> trabalhar em sua IA,
+>> abrir aplicacoes do desktop,
+>> banco de dados,
 >> ..spy::%/
 
 

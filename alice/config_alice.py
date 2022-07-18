@@ -28,7 +28,7 @@ def executa_comando():
             alice.runAndWait()
             print('Ouvindo...')
             voz = r.listen(source)
-            comando = r.recognize_google(voz, language='pt-BR')
+            comando = r.recognize_google(voz, language='pt-br')
             comando = comando.lower()
             print(comando)
             if 'alice' in comando:
@@ -36,31 +36,40 @@ def executa_comando():
                 alice.say(comando)
                 alice.runAndWait()
 
-    except:
-        print('Microfone não está ok')
+    except sr.UnknownValueError:
+        alice.say('voce falou alguma coisa?, poderia repetir')
+        alice.runAndWait()
+        comando_voz_usuario()
+    except sr.RequestError:
+        alice.say('Desculpe nao conseguir completar a tarefa')
+        alice.runAndWait()
+        comando_voz_usuario()
     
+    except:
+        alice.say('seu microfone está desligado?')
 
     return comando
 
-def comando_voz_usuario():
-    comando = executa_comando()
-    if 'horas' in comando:
+def comando_voz_usuario(valor):
+
+    if 'horas' in valor:
         hora = datetime.now().strftime('%H:%M')
         alice.say('Agora são' + hora)
         alice.runAndWait()
-    elif 'procure por' in comando:
-        procurar = comando.replace('procure por', '')
+    elif 'procure por' in valor:
+        procurar = valor.replace('procure por', '')
         wikipedia.set_lang('pt')
         resultado = wikipedia.summary(procurar,2)
         print(resultado)
         alice.say(resultado)
         alice.runAndWait()
-    elif 'toque' in comando:
-        musica = comando.replace('toque','')
+    elif 'toque' in valor:
+        musica = valor.replace('toque','')
         resultado = pywhatkit.playonyt(musica)
         alice.say('Tocando música')
         alice.runAndWait()
 
-
-
-comando_voz_usuario()
+value = True
+while value:
+    comando = executa_comando()
+    comando_voz_usuario(comando)

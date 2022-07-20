@@ -1,4 +1,6 @@
+import sys
 import os
 
-with os.startfile('notepad.exe'):
-    print()
+os.startfile('notepad.exe')
+
+
